@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routers import chat_router
+from routers import chat_router, files_router
 
 app = FastAPI()
 
@@ -15,5 +15,5 @@ app.add_middleware(
 
 # Include routers
 app.include_router( chat_router.router, prefix='/chat', tags=['Chat'] )
-# ==> Route for blob storage
+app.include_router( files_router.router, prefix='/files', tags=['Files Upload'] )
 # ==> Route for other azure resources ...

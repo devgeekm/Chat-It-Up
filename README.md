@@ -2,8 +2,8 @@
 
 ## Setup
 For running this project in your local machine, you may run the following commands in your favorite prompt:
-* `git clone da-uber-project`
-* `cd da-uber-project`
+* `git clone Chat-It-Up`
+* `cd Chat-It-Up`
 * `pip install virtualenv` (if you don't have virtualenv installed)
 * `virtualenv .venv` to create your new environment (the environment folder is called '.venv')
 After you created your virtual environment, you must run the following command depending of your prompt or OS:
