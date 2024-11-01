@@ -1,5 +1,5 @@
 <div align="right">
-  <a href="README_es.md">
+  <a href="README_ES.md">
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Flag_of_Spain.svg/1200px-Flag_of_Spain.svg.png" alt="Español" width="40">
   </a>
 </div>
