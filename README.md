@@ -55,10 +55,13 @@ The platform leverages artificial intelligence to process content in various for
 3. **Azure Blob Storage**: Stores all files uploaded by users for processing, functioning as the primary database for storing and retrieving data within the RAG model, meeting high availability and efficiency standards.
 4. **Python Backend**: Processes files, manages API interactions, and controls communication between the user and the chatbot.
 5. **Whisper (Azure Speech)**: Used for transcribing audio to text, making audio and video content accessible for response generation.
-6. **Azure OpenAI API**: GPT-4 is used to generate summaries, answer questions, and analyze text content.
-7. **PyPDF2**: Allows PDF files to be read for direct text content extraction.
-8. **Pydub**: Processes and manipulates downloaded audio to ensure it is in the proper format for transcription.
-9. **yt-dlp**: Downloads audio from YouTube videos provided by the user for further processing.
+6. **Retrieval-Augmented Generation (RAG)**: Implemented using Azure services to enhance the chatbot's ability to retrieve and generate relevant information from stored content.
+7. **Azure Content Safety**: Analyzes content from YouTube URLs to ensure it meets safety standards before processing.
+8. **Azure Translator**: Translates text content to Spanish, making the information accessible to a wider audience.
+9. **Azure OpenAI API**: GPT-4 is used to generate summaries, answer questions, and analyze text content.
+10. **PyPDF2**: Allows PDF files to be read for direct text content extraction.
+11. **Pydub**: Processes and manipulates downloaded audio to ensure it is in the proper format for transcription.
+12. **yt-dlp**: Downloads audio from YouTube videos provided by the user for further processing.
 
 ### 4. Scalability Towards a Retrieval-Augmented Generation (RAG) Information Retrieval System
 

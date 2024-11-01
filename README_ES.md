@@ -51,14 +51,17 @@ La plataforma utiliza inteligencia artificial para procesar contenido en diferen
 ### 3. Herramientas y Tecnologías de Integración
 
 1. **FastAPI**: Framework para construir la API web.
-2. **Streamlit**: Para crear una interfaz de usuario amigable donde los usuarios puedan interactuar con el chatbot y cargar archivos multimedia.
-3. **Azure Blob Storage**: Almacena todos los archivos que el usuario sube para procesamiento, funcionando como la base de datos principal para almacenar y recuperar datos en el modelo RAG, además de cumplir con estándares de alta disponibilidad y eficiencia.
-4. **Backend en Python**: Procesa los archivos, controla las interacciones entre las API y gestiona la comunicación entre el usuario y el chatbot.
-5. **Whisper (Azure Speech)**: Utilizado para transcribir el audio en texto, permitiendo que el contenido de audio y video sea accesible para la generación de respuestas.
-6. **API de Azure OpenAI**: GPT-4 se utiliza para generar resúmenes, responder preguntas y analizar los textos.
-7. **PyPDF2**: Permite la lectura de archivos PDF para extraer contenido textual directamente.
-8. **Pydub**: Procesa y manipula audios descargados, asegurando que estén en un formato adecuado para transcripción.
-9. **yt-dlp**: Descarga el audio de los videos de YouTube proporcionados por el usuario para su posterior procesamiento.
+2. **Streamlit**: Para crear una interfaz de usuario amigable donde los usuarios pueden interactuar con el chatbot y cargar archivos multimedia.
+3. **Azure Blob Storage**: Almacena todos los archivos subidos por los usuarios para procesamiento, funcionando como la base de datos principal para almacenar y recuperar datos en el modelo RAG, cumpliendo con altos estándares de disponibilidad y eficiencia.
+4. **Backend en Python**: Procesa archivos, gestiona las interacciones de la API y controla la comunicación entre el usuario y el chatbot.
+5. **Whisper (Azure Speech)**: Utilizado para transcribir audio a texto, haciendo que el contenido de audio y video sea accesible para la generación de respuestas.
+6. **Generación Aumentada por Recuperación (RAG)**: Implementada con servicios de Azure para mejorar la capacidad del chatbot de recuperar y generar información relevante a partir del contenido almacenado.
+7. **Azure Content Safety**: Analiza el contenido de las URL de YouTube para garantizar que cumpla con los estándares de seguridad antes de su procesamiento.
+8. **Azure Translator**: Traduce contenido de texto al español, haciendo la información accesible a una audiencia más amplia.
+9. **API de Azure OpenAI**: GPT-4 se utiliza para generar resúmenes, responder preguntas y analizar el contenido textual.
+10. **PyPDF2**: Permite la lectura de archivos PDF para la extracción directa de contenido textual.
+11. **Pydub**: Procesa y manipula el audio descargado, asegurando que esté en el formato adecuado para la transcripción.
+12. **yt-dlp**: Descarga el audio de los videos de YouTube proporcionados por el usuario para su posterior procesamiento.
 
 ### 4. Escalabilidad hacia un Sistema de Recuperación de Información con RAG (Retrieval-Augmented Generation)
 
