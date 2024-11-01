@@ -3,7 +3,7 @@ from app.api.endpoints import transcribe
 
 app = FastAPI()
 
-app.include_router(transcribe.router, prefix="/transcribe", tags=["transcribe"])
+app.include_router(transcribe.router, prefix="/api/v1/transcribe", tags=["transcribe"])
 
 @app.get("/")
 async def root():
