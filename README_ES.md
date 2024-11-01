@@ -164,6 +164,16 @@ Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo [LICENS
 
 Somos entusiastas de la programación y la inteligencia artificial. Como parte del **Microsoft Hackathon Innovation Challenge 2024**, hemos desarrollado esta aplicación para atender las necesidades de usuarios que desean transcribir o cargar archivos para contextualizar e interactuar con un chatbot inteligente. Este proyecto busca explorar soluciones innovadoras que faciliten el acceso a la información mediante IA y simplifiquen procesos complejos en una experiencia accesible e intuitiva.
 
+## Repositorio Frontend
+
+<div align="left">
+  <a href="https://github.com/rafaelcg14/chat-it-up-hackathon">
+    <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png" alt="GitHub" width="120" style="background-color:white; padding:10px; border-radius:10px;">
+  </a>
+  <br>
+  <a href="https://github.com/rafaelcg14/chat-it-up-hackathon">Frontend Repository</a>
+</div>
+
 ### Participantes
 
 Este proyecto fue desarrollado por un equipo apasionado de entusiastas de la programación y la inteligencia artificial. Para más información sobre cada integrante, puedes visitar sus perfiles:
