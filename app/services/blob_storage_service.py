@@ -7,7 +7,13 @@ from urllib.parse import urlparse, unquote
 
 # Cargar variables de entorno
 load_dotenv()
-azure_blob_connection_string = os.getenv("AZURE_BLOB_CONNECTION_STRING")
+
+# Obtén la cadena de conexión desde las variables de entorno
+azure_blob_connection_string = os.getenv('AZURE_BLOB_CONNECTION_STRING')
+
+if not azure_blob_connection_string:
+    raise ValueError("La variable de entorno AZURE_BLOB_CONNECTION_STRING no está configurada")
+
 container_name = os.getenv("AZURE_BLOB_CONTAINER_NAME")
 
 # Inicializar el cliente de Blob Storage
