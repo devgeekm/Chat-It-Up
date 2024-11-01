@@ -1,3 +1,9 @@
+<div align="right">
+  <a href="README_es.md">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Flag_of_Spain.svg/1200px-Flag_of_Spain.svg.png" alt="Español" width="40">
+  </a>
+</div>
+
 # Chat It Up!
 
 ![Python](https://img.shields.io/badge/Python-3.8%2B-3776AB?logo=python&logoColor=white)
@@ -10,108 +16,107 @@
 ![yt-dlp](https://img.shields.io/badge/yt--dlp-2021.12.1-FF0000?logo=youtube&logoColor=white)
 ![RAG](https://img.shields.io/badge/RAG-Retrieval--Augmented%20Generation-FF4500?logo=read-the-docs&logoColor=white)
 
-**Lema**:
+**Motto**:
 
-"Convierte tus videos de YouTube en conversaciones inteligentes."
+"Transform your YouTube videos into smart conversations."
 
-## Descripción
+## Description
 
-**Chat It Up!** transforma la experiencia de conversación: más que un simple chat, es una herramienta inteligente que extrae y organiza conocimiento de tus videos de YouTube, documentos y archivos de audios, brindándote respuestas precisas y resúmenes accesibles en un instante. Con solo un clic, convierte tus archivos en diálogos enriquecedores que te ahorran tiempo y te acercan al conocimiento de manera intuitiva y elegante.
+**Chat It Up!** redefines conversational experiences: more than just chat, it’s an intelligent tool that extracts and organizes knowledge from your YouTube videos, documents, and audio files, providing precise answers and accessible summaries in an instant. With just one click, transform your files into enriching dialogues that save you time and connect you to knowledge intuitively and elegantly.
 
-### 1. Descripción de la Idea de Negocio
+### 1. Business Idea Overview
 
-La plataforma utiliza inteligencia artificial para procesar contenido en diferentes formatos (audios, videos de YouTube y documentos en PDF) y generar respuestas o resúmenes personalizados mediante un chatbot interactivo. El objetivo principal es convertir contenido multimedia y textual en formatos accesibles y comprensibles, ideal para profesionales y estudiantes que necesitan consultar, resumir o extraer información sin procesar contenido extenso.
+The platform leverages artificial intelligence to process content in various formats (audio, YouTube videos, and PDF documents) and generates customized responses or summaries via an interactive chatbot. The main goal is to convert multimedia and textual content into accessible, understandable formats, ideal for professionals and students who need to review, summarize, or extract information without processing lengthy content.
 
-### 2. Alcance del Proyecto
+### 2. Project Scope
 
-**Objetivo del Proyecto**: Crear una aplicación web basada en inteligencia artificial que permita a los usuarios cargar contenido multimedia (archivos de audio, documentos PDF y enlaces de YouTube) y recibir resúmenes o respuestas mediante un chatbot.
+**Project Objective**: To create an AI-based web application that allows users to upload multimedia content (audio files, PDF documents, and YouTube links) and receive summaries or answers via a chatbot.
 
-### Funcionalidades
+### Features
 
-- **Subida y almacenamiento de archivos**: El usuario puede subir documentos PDF, audios o enlaces de YouTube.
-- **Transcripción y Procesamiento**:
-  - Los audios se transcriben con **Whisper**.
-  - Los documentos PDF se procesan con **PyPDF2** para extracción de texto.
-  - Los audios de YouTube se descargan con **yt-dlp** y se procesan para extraer texto.
-- **Generación de Respuestas y Resúmenes**: Mediante la **API de Azure OpenAI**, el chatbot analiza las consultas del usuario y proporciona respuestas basadas en el contenido previamente procesado.
-- **Interfaz del Chatbot**: **Streamlit** facilita la interacción del usuario con el chatbot, mostrando resultados en tiempo real y permitiendo cargas de archivos fácilmente.
+- **File Upload and Storage**: Users can upload PDF documents, audio files, or YouTube links.
+- **Transcription and Processing**:
+  - Audio files are transcribed using **Whisper**.
+  - PDF documents are processed with **PyPDF2** to extract text.
+  - YouTube videos are downloaded with **yt-dlp** and processed to extract text.
+- **Answer and Summary Generation**: Through the **Azure OpenAI API**, the chatbot analyzes user queries and provides responses based on previously processed content.
+- **Chatbot Interface**: **Streamlit** facilitates user interaction with the chatbot, displaying results in real time and enabling easy file uploads.
 
-### Limitaciones del Alcance
+### Project Limitations
 
-- Contenidos de menos de 30 minutos (para audios y videos).
-- Documentos PDF de menos de 20 páginas (para garantizar tiempos de procesamiento razonables).
-- Soporte para textos en inglés y español en la fase inicial.
+- Content up to 30 minutes long (for audio and video).
+- PDF documents up to 20 pages (to ensure reasonable processing times).
+- Support for texts in English and Spanish in the initial phase.
 
-### 3. Herramientas y Tecnologías de Integración
+### 3. Integration Tools and Technologies
 
-1. **FastAPI**: Framework para construir la API web.
-2. **Streamlit**: Para crear una interfaz de usuario amigable donde los usuarios puedan interactuar con el chatbot y cargar archivos multimedia.
-3. **Azure Blob Storage**: Almacena todos los archivos que el usuario sube para procesamiento, funcionando como la base de datos principal para almacenar y recuperar datos en el modelo RAG, además de cumplir con estándares de alta disponibilidad y eficiencia.
-4. **Backend en Python**: Procesa los archivos, controla las interacciones entre las API y gestiona la comunicación entre el usuario y el chatbot.
-5. **Whisper (Azure Speech)**: Utilizado para transcribir el audio en texto, permitiendo que el contenido de audio y video sea accesible para la generación de respuestas.
-6. **API de Azure OpenAI**: GPT-4 se utiliza para generar resúmenes, responder preguntas y analizar los textos.
-7. **PyPDF2**: Permite la lectura de archivos PDF para extraer contenido textual directamente.
-8. **Pydub**: Procesa y manipula audios descargados, asegurando que estén en un formato adecuado para transcripción.
-9. **yt-dlp**: Descarga el audio de los videos de YouTube proporcionados por el usuario para su posterior procesamiento.
+1. **FastAPI**: Framework for building the web API.
+2. **Streamlit**: For creating a user-friendly interface where users can interact with the chatbot and upload multimedia files.
+3. **Azure Blob Storage**: Stores all files uploaded by users for processing, functioning as the primary database for storing and retrieving data within the RAG model, meeting high availability and efficiency standards.
+4. **Python Backend**: Processes files, manages API interactions, and controls communication between the user and the chatbot.
+5. **Whisper (Azure Speech)**: Used for transcribing audio to text, making audio and video content accessible for response generation.
+6. **Azure OpenAI API**: GPT-4 is used to generate summaries, answer questions, and analyze text content.
+7. **PyPDF2**: Allows PDF files to be read for direct text content extraction.
+8. **Pydub**: Processes and manipulates downloaded audio to ensure it is in the proper format for transcription.
+9. **yt-dlp**: Downloads audio from YouTube videos provided by the user for further processing.
 
-### 4. Escalabilidad hacia un Sistema de Recuperación de Información con RAG (Retrieval-Augmented Generation)
+### 4. Scalability Towards a Retrieval-Augmented Generation (RAG) Information Retrieval System
 
-Para llevar esta plataforma a una escala mayor y permitir búsquedas precisas en múltiples contenidos, se puede implementar un sistema **RAG** aprovechando **Azure Blob Storage** para el almacenamiento de archivos y recuperación de información:
+To scale this platform for more extensive and precise searches across multiple pieces of content, a **RAG** system can be implemented by leveraging **Azure Blob Storage** for file storage and information retrieval:
 
-1. **Azure Blob Storage como Base de Datos Principal**: Usar Blob Storage para almacenar archivos multimedia y documentos permite una recuperación rápida y eficiente, ideal para el procesamiento RAG.
-2. **Azure Cognitive Search**: Crear un índice de búsqueda sobre los textos transcritos y los documentos PDF almacenados en Azure Blob Storage. Este índice permitirá que el modelo de OpenAI recupere y utilice información relevante de manera eficiente.
-3. **Generación de Respuestas Enriquecida**: El chatbot buscará en el índice de Azure Cognitive Search el contenido más relevante y lo enviará al modelo de OpenAI, permitiendo respuestas basadas en información específica a la consulta del usuario.
+1. **Azure Blob Storage as Primary Database**: Using Blob Storage to store multimedia files and documents allows for quick and efficient retrieval, ideal for RAG processing.
+2. **Azure Cognitive Search**: Create a search index on transcribed texts and PDF documents stored in Azure Blob Storage. This index will allow the OpenAI model to retrieve and use relevant information efficiently.
+3. **Enhanced Answer Generation**: The chatbot will search Azure Cognitive Search’s index for the most relevant content and send it to the OpenAI model, enabling responses based on specific information relevant to the user’s query.
 
-### 5. Cumplimiento de Normativas con Azure Compliance
+### 5. Compliance with Regulations Using Azure Compliance
 
-Al manejar datos de los usuarios, es fundamental cumplir con los estándares de privacidad y seguridad de Azure:
+When handling user data, it is crucial to comply with Azure’s privacy and security standards:
 
-- **Cifrado de Datos**: Azure Blob Storage cifra los datos en reposo y en tránsito. Implementa un sistema de acceso seguro (rol basado) para limitar quién puede ver o modificar los archivos.
-- **Cumplimiento de Normativas**: Azure cumple con diversas normativas (GDPR, HIPAA, ISO 27001) que aseguran el manejo de datos de usuarios conforme a la regulación global y local.
-- **Auditoría y Monitoreo**: Usar **Azure Monitor** para auditar y monitorear el uso y acceso a los datos, detectando posibles accesos no autorizados.
-- **Política de Retención de Datos**: Configurar políticas de almacenamiento y eliminación de datos para que los archivos subidos por los usuarios se eliminen automáticamente después de un periodo de tiempo determinado.
+- **Data Encryption**: Azure Blob Storage encrypts data at rest and in transit. A secure (role-based) access system is implemented to limit who can view or modify files.
+- **Regulatory Compliance**: Azure complies with various regulations (GDPR, HIPAA, ISO 27001) to ensure user data is managed per global and local regulations.
+- **Auditing and Monitoring**: Use **Azure Monitor** to audit and monitor data usage and access, detecting any unauthorized access.
+- **Data Retention Policy**: Configure storage and data deletion policies so that user-uploaded files are automatically deleted after a specified period.
 
-### 6. Modelo Comercial
+### 6. Business Model
 
-**Modelo Freemium**: Ofrecer una versión gratuita con límites de uso (como procesamiento de un número limitado de archivos por mes) y una versión premium que permita mayores volúmenes de procesamiento.
+**Freemium Model**: Offer a free version with usage limits (such as processing a limited number of files per month) and a premium version allowing higher processing volumes.
 
-- **Clientes Potenciales**: Empresas de educación, creadores de contenido, estudiantes y profesionales que deseen extraer y organizar información de contenido.
-- **Suscripciones Mensuales/Anuales**: Ofrecer un modelo de suscripción que permita procesar un número ilimitado de documentos y audios.
-- **Planes Personalizados para Organizaciones**: Empresas que requieran análisis de gran volumen podrán adquirir planes personalizados con acceso completo a funciones avanzadas.
+- **Potential Customers**: Education companies, content creators, students, and professionals looking to extract and organize content information.
+- **Monthly/Annual Subscriptions**: Provide a subscription model allowing unlimited document and audio processing.
+- **Custom Plans for Organizations**: Companies requiring high-volume analysis can purchase custom plans with full access to advanced features.
 
-## Requisitos
+## Requirements
 
-- Python 3.8 o superior
+- Python 3.8 or higher
 - Azure AI Services
-- Archivo `.env` con las credenciales de Azure
-- Archivo `requirements.txt` con las librerías necesarias
+- `.env` file with Azure credentials
+- `requirements.txt` file with necessary libraries
 
-## Instalación
+## Installation
 
-1. **Clonar el repositorio:**
+1. **Clone the repository:**
 
    ```sh
    git clone https://github.com/CodeGeekR/audio-summary-azure-ai.git
    cd audio-summary-azure-ai
-
    ```
 
-2. **Crear y activar un entorno virtual:**
+2. **Create and activate a virtual environment:**
 
    ```sh
    python3 -m venv venv
-   source venv/bin/activate  # En Windows usa `venv\Scripts\activate`
+   source venv/bin/activate  # On Windows use `venv\Scripts\activate`
    ```
 
-3. **Instalar las dependencias:**
+3. **Install dependencies:**
 
    ```sh
    pip install -r requirements.txt
    ```
 
-4. **Configurar las variables de entorno:**
+4. **Set up environment variables:**
 
-   Crear un archivo `.env` en el directorio raíz del proyecto con el siguiente contenido:
+   Create a .env file in the project's root directory with the following content:
 
    ```env
    AI_SERVICE_ENDPOINT=tu_endpoint_de_ai
@@ -123,19 +128,19 @@ Al manejar datos de los usuarios, es fundamental cumplir con los estándares de 
    AZURE_TRANSLATOR_LOCATION=tu_region_de_servicio
    ```
 
-   Reemplaza `tu_clave_de_speech`, `tu_region_de_servicio`, `tu_endpoint_de_ai` y `tu_clave_de_ai` con tus credenciales de Azure.
+   Replace your_speech_key, your_service_region, your_ai_service_endpoint, and your_ai_service_key with your Azure credentials.
 
-## Uso
+## Usage
 
-1. **Ejecutar el script:**
+1. **Run the script:**
 
    ```sh
    python3 run.py
    ```
 
-2. **Interactuar con la API:**
+2. **Interact with the API:**
 
-   Utiliza herramientas como Postman o cURL para interactuar con la API. Por ejemplo, para transcribir un video de YouTube, envía una solicitud POST a http://127.0.0.1:8000/api/v1/transcribe/ con el siguiente cuerpo JSON:
+   Use tools like Postman or cURL to interact with the API. For example, to transcribe a YouTube video, send a POST request to http://127.0.0.1:8000/api/v1/transcribe/ with the following JSON body:
 
    ```plaintext
    {
@@ -143,13 +148,27 @@ Al manejar datos de los usuarios, es fundamental cumplir con los estándares de 
    }
    ```
 
-3. Ver los resultados:
-   Los archivos transcritos, traducidos y mejorados se guardarán en Azure Blob Storage y estarán disponibles para su recuperación y análisis mediante el chatbot.
+3. View the results: Transcribed, translated, and improved files will be saved in Azure Blob Storage, where they can be retrieved and analyzed via the chatbot.
 
-## Contribuciones
+## Contributions
 
-Las contribuciones son bienvenidas. Por favor, abre un issue o un pull request para discutir cualquier cambio que te gustaría realizar.
+Contributions are welcome! Please open an issue or a pull request to discuss any changes you'd like to make.
 
 ## Licencia
 
-Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo [LICENSE](https://es.wikipedia.org/wiki/Licencia_MIT) para más detalles.
+This project is licensed under the MIT License. See the [LICENSE](https://es.wikipedia.org/wiki/Licencia_MIT) file for more details.
+
+### Hackathon Participation
+
+We are programming and artificial intelligence enthusiasts. As part of the **Microsoft Hackathon Innovation Challenge 2024**, we developed this application to meet the needs of users who want to transcribe or upload files to provide context and interact with an intelligent chatbot. This project aims to explore innovative solutions that enhance information accessibility through AI and simplify complex processes in an accessible and intuitive experience.
+
+### Participants
+
+This project was developed by a passionate team of programming and AI enthusiasts. For more information about each team member, visit their profiles:
+
+- [Samuel Diaz](https://www.samuraidev.engineer)
+  - **GitHub**: [github](https://github.com/CodeGeekR)
+  - **LinkedIn**: [linkedin](https://www.linkedin.com/in/samuraidev/)
+- [Rafael Castellanos](https://github.com/rafaelcg14)
+  - **GitHub**: [github](https://github.com/rafaelcg14)
+  - **LinkedIn**: [linkedin](https://www.linkedin.com/in/rafael-castellanos-guzman/)
