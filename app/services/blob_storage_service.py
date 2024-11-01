@@ -16,6 +16,9 @@ if not azure_blob_connection_string:
 
 container_name = os.getenv("AZURE_BLOB_CONTAINER_NAME")
 
+if not container_name:
+    raise ValueError("La variable de entorno AZURE_BLOB_CONTAINER_NAME no está configurada")
+
 # Inicializar el cliente de Blob Storage
 blob_service_client = BlobServiceClient.from_connection_string(azure_blob_connection_string)
 container_client = blob_service_client.get_container_client(container_name)

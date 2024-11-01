@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 from pydub import AudioSegment
 from app.utils.file_utils import print_styled_message, milliseconds_until_sound
@@ -5,6 +6,10 @@ from app.services.blob_storage_service import upload_file_to_blob, download_file
 from app.models.blob_storage import FileUploadRequest
 from io import BytesIO
 from urllib.parse import urlparse
+
+# Configurar Pydub para usar FFmpeg desde la variable de entorno
+ffmpeg_path = os.getenv('FFMPEG_PATH', 'ffmpeg')
+AudioSegment.converter = ffmpeg_path
 
 def trim_start(blob_url: str, silence_threshold_in_decibels=-20.0, min_silence_len=2000):
     """
@@ -132,3 +137,14 @@ def split_audio(file_url: str, max_size_mb: int = 25) -> list[str]:
     except Exception as e:
         print_styled_message(f"Error al dividir el audio: {str(e)}")
         raise
+
+def convert_audio(input_path: str, output_path: str, format: str = 'mp3'):
+    """
+    Convierte un archivo de audio a otro formato usando Pydub y FFmpeg.
+    """
+    audio = AudioSegment.from_file(input_path)
+    audio.export(output_path, format=format)
+    return output_path
+
+# Ejemplo de uso
+# convert_audio('/path/to/input/file.wav', '/path/to/output/file.mp3')
