@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException
-from pydantic import BaseModel
+from pydantic import BaseModel, Field, ConfigDict
 from app.services.youtube import download_youtube_audio
 from app.services.audio import trim_start, convert_audio_to_wav, split_audio
 from app.services.azure_clients import initialize_azure_clients
@@ -18,6 +18,7 @@ router = APIRouter()
 
 class YouTubeURL(BaseModel):
     url: str
+    model_config = ConfigDict(json_schema_extra={})
 
 @router.post("/")
 async def transcribe_youtube_audio(youtube_url: YouTubeURL):

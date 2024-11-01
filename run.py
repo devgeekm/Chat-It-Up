@@ -34,16 +34,7 @@ def is_port_in_use(port):
     lines = result.stdout.splitlines()
     return len(lines) > 1
 
-if __name__ == '__main__':
-    # Limpiar el puerto antes de iniciar la aplicación
-    clean_port(8000)
-    
-    # Esperar un momento para asegurarse de que el puerto se haya liberado
-    time.sleep(3)
-    
-    # Verificar si el puerto sigue en uso
-    if is_port_in_use(8000):
-        print("El puerto 8000 sigue en uso. No se puede iniciar la aplicación.")
-    else:
-        # Ejecutar uvicorn con la cadena de importación
-        subprocess.run(["uvicorn", "run:app", "--host", "0.0.0.0", "--port", "8000", "--reload"])
+import uvicorn
+
+if __name__ == "__main__":
+    uvicorn.run("app.main:app", host="0.0.0.0", port=8000, reload=True)
