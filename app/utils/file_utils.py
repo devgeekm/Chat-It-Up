@@ -1,4 +1,8 @@
 from pathlib import Path
+from azure.storage.blob import BlobServiceClient
+from azure.core.exceptions import ResourceNotFoundError
+from urllib.parse import urlparse, unquote
+import os
 
 def print_styled_message(message: str, color: str = "", style: str = "") -> None:
     """
@@ -10,25 +14,23 @@ def read_file(file_path: str) -> str:
     """
     Lee el contenido de un archivo de texto.
     """
-    try:
-        with open(file_path, 'r', encoding='utf-8') as file:
-            return file.read()
-    except FileNotFoundError:
-        print_styled_message(f"Error: El archivo {file_path} no se encuentra.")
-        raise
-    except Exception as e:
-        print_styled_message(f"Error al leer el archivo {file_path}: {str(e)}")
-        raise
+    with open(file_path, 'r', encoding='utf-8') as file:
+        return file.read()
 
-def cleanup_temp_files(file_path: Path, audio_parts: list[Path]):
-    """Limpia los archivos temporales generados durante el proceso."""
+def cleanup_temp_files(file_path: Path, audio_parts: list[str]):
+    """
+    Limpia los archivos temporales generados durante el proceso.
+    """
     try:
+        # Eliminar archivos .wav en el directorio del archivo principal
         for wav_file in file_path.parent.glob("*.wav"):
             wav_file.unlink()
 
+        # Convertir las rutas de audio_parts a objetos Path y eliminar los archivos
         for part in audio_parts:
-            if part.exists():
-                part.unlink()
+            part_path = Path(part)
+            if part_path.exists():
+                part_path.unlink()
     except Exception as e:
         print_styled_message(f"Error al limpiar archivos temporales: {str(e)}")
         raise

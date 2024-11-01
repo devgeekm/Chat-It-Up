@@ -12,8 +12,13 @@ from app.services.youtube import get_youtube_title
 from app.services.content_safety import analyze_content_safety, display_content_safety_results
 from app.services.translation import translate_text
 from app.services.improvement import improve_transcription
+from app.services.blob_storage_service import upload_file_to_blob, download_file_from_blob
+from app.models.blob_storage import FileUploadRequest
+from azure.storage.blob import ContainerClient
+import urllib.parse
+from typing import List, Optional
 
-def transcribe_audio(file_path: str, output_folder: str, whisper_client: AzureOpenAI, youtube_url: Optional[str] = None) -> str:
+def transcribe_audio(file_url: str, whisper_client: AzureOpenAI, youtube_url: Optional[str] = None) -> str:
     """
     Transcribe un archivo de audio y guarda el resultado en un archivo .txt.
     """
@@ -21,36 +26,47 @@ def transcribe_audio(file_path: str, output_folder: str, whisper_client: AzureOp
         if youtube_url:
             video_title = get_youtube_title(youtube_url).rstrip()
         else:
-            video_title = Path(file_path).stem
+            video_title = Path(file_url).stem
 
-        file_path = Path(file_path)
-        output_folder = Path(output_folder)
-        output_folder.mkdir(parents=True, exist_ok=True)
-        output_path = output_folder / f"{video_title}.txt"
+        # Descargar el archivo de Blob Storage
+        file_path = download_file_from_blob(file_url)
+        output_path = Path('reviews') / f"{video_title}.txt"
 
         if not file_path.exists():
             raise FileNotFoundError(f"No se encuentra el archivo de audio: {file_path}")
 
-        wav_path = file_path.with_suffix('.wav')
-        convert_audio_to_wav(str(file_path), str(wav_path))
+        wav_blob_url = convert_audio_to_wav(str(file_path))
 
-        audio_parts = split_audio(wav_path)
+        audio_parts = split_audio(wav_blob_url)
         transcribed_parts = transcribe_audio_parts(audio_parts, whisper_client)
 
         transcribed_text = ' '.join(transcribed_parts)
-        with open(output_path, 'w', encoding='utf-8') as file:
+        
+        # Guardar el archivo de transcripción en la carpeta reviews/
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        with open(output_path, "w", encoding="utf-8") as file:
             file.write(transcribed_text)
+        
+        print_styled_message(f"Transcripción guardada temporalmente en: {output_path}")
 
-        print_styled_message(f"Transcripción guardada en: {output_path}")
+        # Subir el archivo de transcripción a Blob Storage
+        file_request = FileUploadRequest(
+            filename=f"{video_title}.txt",
+            file_data=transcribed_text.encode('utf-8')
+        )
+        blob_url = upload_file_to_blob(file_request)
+        print_styled_message(f"Transcripción guardada en Blob Storage: {blob_url}")
 
+        # Limpiar archivos temporales
         cleanup_temp_files(file_path, audio_parts)
-        return str(output_path)
-
+        print_styled_message(f"Se limpiaron los archivos temporales")
+        return str(output_path)        
+        
     except Exception as e:
         print_styled_message(f"Error en la transcripción: {str(e)}")
         raise
 
-def transcribe_audio_parts(audio_parts: list[Path], whisper_client: AzureOpenAI) -> list[str]:
+def transcribe_audio_parts(audio_parts: list[str], whisper_client: AzureOpenAI) -> list[str]:
     """
     Transcribe múltiples partes de audio usando el modelo Whisper de Azure OpenAI.
     """
@@ -59,13 +75,16 @@ def transcribe_audio_parts(audio_parts: list[Path], whisper_client: AzureOpenAI)
 
     print_styled_message(f"Iniciando transcripción de {total_parts} {'parte' if total_parts == 1 else 'partes'}...")
 
-    for audio_file in audio_parts:
+    for audio_url in audio_parts:
         try:
-            with open(audio_file, "rb") as audio:
+            # Descargar la parte del audio desde Blob Storage
+            audio_file_path = download_file_from_blob(audio_url)
+            
+            with open(audio_file_path, "rb") as audio:
                 result = whisper_client.audio.transcriptions.create(file=audio, model="whisper")
                 transcribed_parts.append(result.text)
         except Exception as e:
-            print_styled_message(f"Error al transcribir {audio_file.name}: {str(e)}")
+            print_styled_message(f"Error al transcribir {audio_url}: {str(e)}")
             raise
 
     print_styled_message("Transcripción de todas las partes completada")

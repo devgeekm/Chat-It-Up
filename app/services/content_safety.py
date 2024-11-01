@@ -1,7 +1,16 @@
-from azure.core.exceptions import HttpResponseError
+from azure.core.exceptions import HttpResponseError, ResourceNotFoundError
 from azure.ai.contentsafety import ContentSafetyClient
 from azure.ai.contentsafety.models import AnalyzeTextOptions, TextCategory
-from app.utils.file_utils import print_styled_message
+from app.utils.file_utils import print_styled_message, read_file
+from urllib.parse import unquote, urlparse
+from azure.storage.blob import BlobServiceClient
+import os
+
+# Inicialización del cliente de Blob Storage
+# azure_blob_connection_string = os.getenv("AZURE_BLOB_CONNECTION_STRING")
+# container_name = os.getenv("AZURE_BLOB_CONTAINER_NAME")
+# blob_service_client = BlobServiceClient.from_connection_string(azure_blob_connection_string)
+# container_client = blob_service_client.get_container_client(container_name)
 
 def analyze_content_safety(client: ContentSafetyClient, text: str) -> dict:
     """
